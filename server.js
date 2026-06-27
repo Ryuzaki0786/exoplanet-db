@@ -1,4 +1,5 @@
-const express =  require('express');
+const express = require('express');
+require('dotenv').config();
 const {Pool} = require('pg');
 
 const app =  express();
@@ -6,11 +7,11 @@ const app =  express();
 app.use(express.static('public'));
 
 const pool = new Pool({
-    user: 'ekam',
-    password: 'VI.X.MMV',
-    host: 'localhost',
-    database: 'exoplanet',
-    port: 5432
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
 
 app.get('/planets',async(req,res) => {
